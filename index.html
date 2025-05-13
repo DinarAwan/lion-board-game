@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lion Zones - Grid Layout</title>
+  <style>
+    body {
+      background-image: url('image/bg-utama.jpg');
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .zone-container {
+      display: grid;
+      grid-template-columns: repeat(2, 320px);
+      grid-gap: 30px;
+      padding: 40px;
+    }
+
+    .zone {
+      width: 300px;
+      height: 300px;
+      border: 10px solid #c28c48;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .zone-title {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      text-align: center;
+      font-size: 22px;
+      padding: 10px 0;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* Replace these with your actual image paths */
+    .animal-zone {
+      background-image: url('animal-zone.jpg');
+    }
+
+    .plant-zone {
+      background-image: url('plant-zone.jpg');
+    }
+
+    .ecosystem-zone {
+      background-image: url('ecosystem-zone.jpg');
+    }
+
+    .energy-zone {
+      background-image: url('energy-zone.jpg');
+    }
+  </style>
+</head>
+<body>
+
+  <div class="zone-container">
+    <div class="zone animal-zone">
+      <div class="zone-title">Home</div>
+    </div>
+
+    <div class="zone plant-zone">
+      <div class="zone-title">School</div>
+    </div>
+
+    <div class="zone ecosystem-zone">
+      <div class="zone-title">Health</div>
+    </div>
+
+    <div class="zone energy-zone">
+      <a href="emotion.html"><div class="zone-title">Emotion</div></a>
+    </div>
+  </div>
+
+</body>
+</html>

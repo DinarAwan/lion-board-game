@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lion Board Game</title>
+    <style>
+        body {
+            background-image: url('image/bg-utama.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        
+        .board-container {
+            position: relative;
+            border: 25px solid #e5b887;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 600px;
+            height: 650px;
+            border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23e5b887" /><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%23d4a76a" stroke-width="3" stroke-dasharray="5,3"/><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%23d4a76a" stroke-width="1" stroke-dasharray="1,1"/></svg>') 25;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .board-header {
+            text-align: center;
+            padding: 10px 0;
+            height: 70px;
+            background: linear-gradient(to bottom, #a9d3ff, #ffffff);
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding-top: 5px;
+        }
+        
+        .ludo-icon {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 35px;
+            height: 35px;
+            border: 1px solid #333;
+        }
+        
+        .ludo-square {
+            border: 1px solid white;
+        }
+        
+        .ludo-red { background-color: #ee2c2c; }
+        .ludo-yellow { background-color: #ffd700; }
+        .ludo-green { background-color: #2ecc40; }
+        .ludo-blue { background-color: #0074d9; }
+        
+        .lion-text {
+            font-size: 40px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        
+        .lion-text span:nth-child(1) { color: #0074d9; }
+        .lion-text span:nth-child(2) { color: #ee2c2c; }
+        .lion-text span:nth-child(3) { color: #ffd700; }
+        .lion-text span:nth-child(4) { color: #2ecc40; }
+        
+        .paw-print {
+            color: #0074d9;
+            font-size: 22px;
+            margin-left: -3px;
+            margin-top: -5px;
+        }
+        
+        .board-content {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 70px);
+            background-color: white;
+            overflow: hidden;
+        }
+        
+        .zone {
+            position: absolute;
+            width: 42%;
+            height: 42%;
+            overflow: hidden;
+        }
+        
+        .zone-title {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            z-index: 5;
+        }
+        
+        .zone-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        /* Specific Zones */
+        #animal-zone {
+            top: 0;
+            left: 0;
+            background-color: #0074d9;
+        }
+        
+        #animal-zone .zone-image {
+            background-image: url('/api/placeholder/250/200');
+        }
+        
+        #plant-zone {
+            top: 0;
+            right: 0;
+            background-color: #ffd700;
+        }
+        
+        #plant-zone .zone-image {
+            background-image: url('/api/placeholder/250/200');
+        }
+        
+        #ecosystem-zone {
+            bottom: 0;
+            left: 0;
+            background-color: #2ecc40;
+        }
+        
+        #ecosystem-zone .zone-image {
+            background-image: url('/api/placeholder/250/200');
+        }
+        
+        #energy-zone {
+            bottom: 0;
+            right: 0;
+            background-color: #ee2c2c;
+        }
+        
+        #energy-zone .zone-image {
+            background-image: url('/api/placeholder/250/200');
+        }
+        
+        /* Paths */
+        .horizontal-path,
+        .vertical-path {
+            position: absolute;
+            background-color: white;
+            display: grid;
+            z-index: 2;
+        }
+        
+        .horizontal-path {
+            height: 40px;
+            width: 100%;
+            left: 0;
+            grid-template-columns: repeat(15, 1fr);
+        }
+        
+        .vertical-path {
+            width: 40px;
+            height: 100%;
+            top: 0;
+            grid-template-rows: repeat(15, 1fr);
+        }
+        
+        .top-path {
+            top: 42%;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .bottom-path {
+            bottom: 42%;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .left-path {
+            left: 42%;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+        
+        .right-path {
+            right: 42%;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+        
+        .path-cell {
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        
+        /* Arrows */
+        .arrow {
+            position: absolute;
+            z-index: 10;
+            width: 40px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .arrow-right {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .arrow-left {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .arrow-up {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .arrow-down {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .arrow svg {
+            width: 40px;
+            height: 80px;
+        }
+        
+        /* Stars */
+        .star {
+            position: absolute;
+            font-size: 24px;
+            color: #ffd700;
+            text-shadow: 0 0 5px #000;
+            z-index: 5;
+        }
+        
+        /* Center area */
+        .center-area {
+            position: absolute;
+            width: 16%;
+            height: 16%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 15;
+            overflow: hidden;
+        }
+        
+        .center-area-content {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+        
+        .center-square {
+            border: 1px solid white;
+        }
+        
+        .center-red { background-color: #ee2c2c; }
+        .center-yellow { background-color: #ffd700; }
+        .center-green { background-color: #2ecc40; }
+        .center-blue { background-color: #0074d9; }
+        
+        .gw-mark {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #006400;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+    <div class="board-container">
+        <!-- <div class="gw-mark">GW</div> -->
+        
+        <div class="board-header">
+            <div class="logo">
+                <div class="ludo-icon">
+                    <div class="ludo-square ludo-red"></div>
+                    <div class="ludo-square ludo-yellow"></div>
+                    <div class="ludo-square ludo-blue"></div>
+                    <div class="ludo-square ludo-green"></div>
+                </div>
+                <div class="lion-text">
+                    <span>L</span><span>i</span><span>o</span><span>n</span>
+                </div>
+                <div class="paw-print">🐾</div>
+            </div>
+        </div>
+        
+        <div class="board-content">
+            <!-- Zones -->
+            <!-- Animal Zone (Top Left) -->
+            <div id="animal-zone" class="zone">
+                <div class="zone-title">ANIMAL ZONE</div>
+                <div class="zone-image">
+                    <div class="arrow arrow-right">
+                        <svg viewBox="0 0 40 80" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="5,40 35,20 35,60" fill="#0074d9"/>
+                        </svg>
+                    </div>
+                    <div class="star" style="top: 40%; left: 30%;">★</div>
+                </div>
+            </div>
+            
+            <!-- Plant Zone (Top Right) -->
+            <div id="plant-zone" class="zone">
+                <div class="zone-title">PLANT ZONE</div>
+                <div class="zone-image">
+                    <div class="arrow arrow-down">
+                        <svg viewBox="0 0 40 80" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="20,75 0,45 40,45" fill="#ffd700"/>
+                        </svg>
+                    </div>
+                    <div class="star" style="bottom: 30%; right: 25%;">★</div>
+                </div>
+            </div>
+            
+            <!-- Ecosystem Zone (Bottom Left) -->
+            <div id="ecosystem-zone" class="zone">
+                <div class="zone-title">ECOSYSTEM ZONE</div>
+                <div class="zone-image">
+                    <div class="arrow arrow-up">
+                        
+                    </div>
+                    <div class="star" style="top: 25%; left: 20%;">★</div>
+                </div>
+            </div>
+            
+            <!-- Energy Source Zone (Bottom Right) -->
+            <a href="emotion.html"><div id="energy-zone" class="zone">
+                <div class="zone-title">EMOTION</div>
+                <div class="zone-image">
+                    <div class="arrow arrow-left">
+                        <svg viewBox="0 0 40 80" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="35,40 5,20 5,60" fill="#ee2c2c"/>
+                        </svg>
+                    </div>
+                    <div class="star" style="bottom: 35%; right: 20%;">★</div>
+                </div>
+            </div></a>
+
+            
+            <!-- Paths -->
+            <!-- Horizontal Paths -->
+            <div class="horizontal-path top-path">
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+            </div>
+            
+            <div class="horizontal-path bottom-path">
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+            </div>
+            
+            <!-- Vertical Paths -->
+            <div class="vertical-path left-path">
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+            </div>
+            
+            <div class="vertical-path right-path">
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+                <div class="path-cell"></div><div class="path-cell"></div><div class="path-cell"></div>
+            </div>
+            
+            <!-- Center area -->
+            <!-- <div class="center-area">
+                <div class="center-area-content">
+                    <div class="center-square center-blue"></div>
+                    <div class="center-square center-yellow"></div>
+                    <div class="center-square center-green"></div>
+                    <div class="center-square center-red"></div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <script>
+        // Menambahkan efek hover pada jalur
+        document.querySelectorAll('.path-cell').forEach(cell => {
+            cell.addEventListener('mouseover', () => {
+                cell.style.backgroundColor = '#f0f0f0';
+            });
+            cell.addEventListener('mouseout', () => {
+                cell.style.backgroundColor = 'white';
+            });
+        });
+
+        // Menambahkan efek pulse pada bintang
+        const stars = document.querySelectorAll('.star');
+        setInterval(() => {
+            stars.forEach(star => {
+                star.style.transform = 'scale(1.2)';
+                star.style.transition = 'transform 0.5s ease';
+                setTimeout(() => {
+                    star.style.transform = 'scale(1)';
+                }, 500);
+            });
+        }, 3000);
+    </script>
+</body>
+</html>
