@@ -6,7 +6,7 @@
   <title>Flip Card Zones dengan Audio</title>
   <style>
     body {
-      background-image: url('image/bg-coba1.jpg');
+      background-image: url('image/bg-emotion.png');
       background-size: cover; 
       font-family: Arial, sans-serif;
       display: flex;
@@ -100,23 +100,23 @@
     }
 
     .animal-zone {
-      background-image: url('image/emotion/bg-card.png');
+      background-image: url('image/home/37.png');
     }
     
     .plant-zone {
-      background-image: url('image/emotion/bg-card.png');
+      background-image: url('image/home/37.png');
     }
 
-    .animal-zone-back1 { background-image: url('image/emotion/39.png'); }
-    .animal-zone-back2 { background-image: url('image/emotion/40.png'); }
-    .animal-zone-back3 { background-image: url('image/emotion/41.png'); }
-    .animal-zone-back4 { background-image: url('image/emotion/42.png'); }
-    .animal-zone-back5 { background-image: url('image/emotion/43.png'); }
-    .animal-zone-back6 { background-image: url('image/emotion/44.png'); }
-    .animal-zone-back7 { background-image: url('image/emotion/45.png'); }
-    .animal-zone-back8 { background-image: url('image/emotion/46.png'); }
-    .animal-zone-back9 { background-image: url('image/emotion/47.png'); }
-    .animal-zone-back10 { background-image: url('image/emotion/48.png'); }
+    .animal-zone-back1 { background-image: url('image/home/38.png'); }
+    .animal-zone-back2 { background-image: url('image/home/39.png'); }
+    .animal-zone-back3 { background-image: url('image/home/40.png'); }
+    .animal-zone-back4 { background-image: url('image/home/41.png'); }
+    .animal-zone-back5 { background-image: url('image/home/42.png'); }
+    .animal-zone-back6 { background-image: url('image/home/43.png'); }
+    .animal-zone-back7 { background-image: url('image/home/44.png'); }
+    .animal-zone-back8 { background-image: url('image/home/45.png'); }
+    .animal-zone-back9 { background-image: url('image/home/46.png'); }
+    .animal-zone-back10 { background-image: url('image/home/47.png'); }
 
     .audio-controls {
       position: fixed;
@@ -137,7 +137,6 @@
       font-size: 14px;
     }
 
-  
     .home-link {
       position: fixed;
       top: 20px;
@@ -153,14 +152,13 @@
 
     .home-link:hover{
       transform: scale(1.07);
-      background: #1b0a6b;
+      background: #001769;
     }
   </style>
 </head>
 <body>
-
   <a href="papanAssesment.html" class="home-link">Back</a>
-
+  
   <div class="card-container">
     <!-- 10 Cards -->
     <div class="flip-card" data-card-id="1">
@@ -244,7 +242,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       // Membuat objek audio untuk setiap kartu emosi
       const audioFiles = {
-        '1': new Audio('suara/emotion/emotion1.mp3'),
+        '1': new Audio('suara/emotion/emotion1'),
         '2': new Audio('audio/emotion2.mp3'),
         '3': new Audio('audio/emotion3.mp3'),
         '4': new Audio('audio/emotion4.mp3'),

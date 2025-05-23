@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image with Buttons</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-image: url('image/bg-coba1.jpg');
+      background-size: cover;
+    }
+
+    .navbar {
+        position: fixed;    
+        top: 0;              
+        left: 0;
+        width: 100%;         
+        height: 60px;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #000000;
+        font-size: 24px;
+        font-weight: bold;
+        z-index: 1000;       
+      }
+      
+
+    .main-content {
+      height: calc(100% - 60px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .image-container img {
+      border-radius: 20px;
+      width: 600px;
+      height: auto;
+      display: block;
+    }
+
+    .btn {
+      position: absolute;
+      padding: 8px 12px;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Posisi tombol berdasarkan perkiraan dari gambar */
+    .btn-home {
+         top: 20%;
+         left: 20%;
+         width: 238px;
+         height: 238px;
+         background-color: transparent;
+         transition: all .3s ease-in-out;
+         }
+      .btn-home:hover {
+        background-image: url('image/home-papan.png');
+        background-size: cover;
+        width: 245px;
+        height: 245px;
+        border-radius: 20px;
+      }
+    .btn-health { 
+        top:20%;
+        left: 80%;
+        width: 238px;
+        height: 238px;  
+        background-color: transparent;
+        transition: all .3s ease-in-out;
+    }
+    .btn-health:hover { 
+      background-image: url('image/health-papan.png');
+        background-size: cover;
+        width: 245px;
+        height: 245px;
+        border-radius: 20px;
+  }
+    .btn-emotion {
+        top: 80%;
+        left: 20%;
+        width: 238px;
+        height: 238px;  
+        background-color: transparent;
+        transition: all .3s ease-in-out;
+     }
+     .btn-emotion:hover {
+      background-image: url('image/emotion-papan.png');
+        background-size: cover;
+        width: 245px;
+        height: 245px;
+        border-radius: 20px;
+   }
+
+    .btn-school { 
+        top: 80%; 
+        left: 80%;
+        width: 238px;
+        height: 238px;  
+        background-color: transparent;
+        transition: all .3s ease-in-out;
+     }
+     .btn-school:hover { 
+      background-image: url('image/school-papan.png');
+      background-size: cover;
+      width: 245px;
+      height: 245px;
+      border-radius: 20px;;
+   }
+
+    .btn-center { 
+        top: 50%; 
+        left: 50%;
+        width: 115px;
+        height: 115px;  
+        background-color: transparent; 
+        transition: all .3s ease-in-out;
+    }
+    .btn-center:hover { 
+      background-image: url('image/center-papan-asses.png');
+      background-size: cover;
+      width: 125px;
+      height: 125px;
+      border-radius: 20px;
+  }
+
+    .home-link {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 15px;
+      background: #087800;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: all .3s ease-in-out;
+    }
+
+    .home-link:hover{
+      transform: scale(1.07);
+      background: #96edb6;
+    }
+
+    .lion-text {
+      font-size: 40px;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+ 
+  
+  .lion-text span:nth-child(1) {
+     color: #0074d9; 
+     transition: all .2s ease-in-out;
+    }
+  .lion-text span:nth-child(2) { color: #ee2c2c; transition: all .2s ease-in-out; }
+  .lion-text span:nth-child(3) { color: #ffd700; transition: all .2s ease-in-out;}
+  .lion-text span:nth-child(4) { color: #2ecc40; transition: all .2s ease-in-out;}
+  .lion-text span:nth-child(5) { color: #0074d9; transition: all .2s ease-in-out;}
+  .lion-text span:nth-child(6) { color: #ee2c2c; transition: all .2s ease-in-out;}
+  .lion-text span:nth-child(7) { color: #ffd700; transition: all .2s ease-in-out;}
+  .lion-text span:nth-child(8) { color: #2ecc40; transition: all .2s ease-in-out;}
+  .lion-text span:nth-child(9) { color: #0074d9; transition: all .2s ease-in-out;}
+  .lion-text span:nth-child(10) { color: #ee2c2c; transition: all .2s ease-in-out;}
+  .lion-text span:nth-child(11) { color: #ffd700; transition: all .2s ease-in-out;}
+  .lion-text span:nth-child(12) { color: #2ecc40; transition: all .2s ease-in-out;}
+  .lion-text span:nth-child(13) { color: #0074d9; transition: all .2s ease-in-out;}
+  .lion-text span:nth-child(14) { color: #ee2c2c; transition: all .2s ease-in-out;}
+  
+  .lion-text span:nth-child(1):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(2):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(3):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(4):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(5):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(6):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(7):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(8):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(9):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(10):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(11):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(12):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(13):hover{
+    font-size: 50px;
+  }.lion-text span:nth-child(14):hover{
+    font-size: 50px;
+  }
+
+  </style>
+</head>
+<body>
+ 
+  <div class="navbar">
+    <div class="lion-text">
+      <span>L</span><span>I</span><span>O</span><span>N</span> <span>A</span><span>S</span><span>S</span><span>E</span><span>S</span><span>S</span><span>M</span><span>E</span><span>N</span>
+  </div>
+    <a href="index.html" class="home-link">Back</a>
+  </div>
+ 
+
+  <div class="main-content">
+    <div class="image-container">
+      <img src="image/assesment/assesment.jpg" alt="Assessment Map" />
+
+      <!-- Tombol-tombol -->
+      <a href="home.html"><button class="btn btn-home"></button></a>
+      <a href="health.html"><button class="btn btn-health"></button></a>
+      <a href="emotion.html"><button class="btn btn-emotion"></button></a>
+      <a href="school.html"><button class="btn btn-school"></button></a>
+      <a href="freeCard.html"><button class="btn btn-center"></button></a>
+    </div>
+  </div>
+</body>
+</html>

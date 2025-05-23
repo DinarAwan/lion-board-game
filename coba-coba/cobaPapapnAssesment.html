@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image with Buttons</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    .navbar {
+        position: fixed;     /* Membuat navbar tetap di posisi atas */
+        top: 0;              /* Letakkan di bagian paling atas */
+        left: 0;
+        width: 100%;         /* Agar lebarnya penuh */
+        height: 60px;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #000000;
+        font-size: 24px;
+        font-weight: bold;
+        z-index: 1000;       /* Pastikan di atas elemen lain */
+      }
+      
+
+    .main-content {
+      height: calc(100% - 60px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .image-container img {
+      border-radius: 20px;
+      width: 600px;
+      height: auto;
+      display: block;
+    }
+
+    .btn {
+      position: absolute;
+      padding: 8px 12px;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Posisi tombol berdasarkan perkiraan dari gambar */
+    .btn-home {
+         top: 20%;
+         left: 20%;
+         width: 200px;
+         height: 200px;
+         background-color: transparent;
+         }
+    .btn-health { 
+        top:20%;
+        left: 80%;
+        width: 200px;
+        height: 200px;  
+        background-color: transparent;
+    }
+    .btn-emotion {
+        top: 80%;
+        left: 20%;
+        width: 200px;
+        height: 200px;  
+        background-color: transparent;
+     }
+    .btn-school { 
+        top: 80%; 
+        left: 80%;
+        width: 200px;
+        height: 200px;  
+        background-color: transparent;
+     }
+    .btn-center { 
+        top: 50%; 
+        left: 50%;
+        width: 100px;
+        height: 100px;  
+        background-color: transparent; 
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    Lion
+  </div>
+
+  <div class="main-content">
+    <div class="image-container">
+      <img src="assesment.jpg" alt="Assessment Map" />
+
+      <!-- Tombol-tombol -->
+      <button class="btn btn-home"></button>
+      <button class="btn btn-health"></button>
+      <a href="emotion.html"><button class="btn btn-emotion"></button></a>
+      <button class="btn btn-school"></button>
+      <button class="btn btn-center"></button>
+    </div>
+  </div>
+</body>
+</html>
