@@ -130,21 +130,31 @@
         #animal-zone {
             top: 0;
             left: 0;
-            background-color: #0074d9;
+            background: transparent;
         }
         
         #animal-zone .zone-image {
             background-image: url('image/materi/materi-2.jpg');
+            transition: all 0.3s ease-in-out;
+            
+        }
+
+        #animal-zone .zone-image:hover {
+            transform: scale(1.09);
         }
         
         #plant-zone {
             top: 0;
             right: 0;
-            background-color: #ffd700;
+            background: transparent;
         }
         
         #plant-zone .zone-image {
-            background-image: url('image/materi/materi-3.jpg');
+            background-image: url('image/materi/materi-3.png');
+            transition: all 0.3s ease-in-out;
+        }
+        #plant-zone .zone-image:hover {
+            transform: scale(1.09);
         }
         
         #ecosystem-zone {
@@ -154,7 +164,12 @@
         }
         
         #ecosystem-zone .zone-image {
+            bottom: 1%;
             background-image: url('image/materi/materi-1.jpg');
+            transition: all 0.3s ease-in-out;
+        }
+        #ecosystem-zone .zone-image:hover {
+            transform: scale(1.09);
         }
         
         #energy-zone {
@@ -164,10 +179,14 @@
         }
         
         #energy-zone .zone-image {
+            bottom: 1%;
             background-image: url('image/materi/materi-4.jpg');
+            transition: all 0.3s ease-in-out;
+        }
+        #energy-zone .zone-image:hover {
+            transform: scale(1.09);
         }
         
-        /* Paths */
         .horizontal-path,
         .vertical-path {
             position: absolute;
@@ -324,6 +343,11 @@
             transform: scale(1.07);
             background-color: #00098d;
           }
+          .center-red { background-color: #ee2c2c; }
+          .center-yellow { background-color: #ffd700; }
+          .center-green { background-color: #2ecc40; }
+          .center-blue { background-color: #0074d9; }
+              
     </style>
 </head>
 <body>
@@ -349,7 +373,7 @@
         <div class="board-content">
             <!-- Zones -->
             <!-- Animal Zone (Top Left) -->
-            <a href="#"><div id="animal-zone" class="zone">
+            <a href="animal-zone.html"><div id="animal-zone" class="zone">
                 <div class="zone-title"></div>
                 <div class="zone-image">
                     <div class="arrow arrow-right">
@@ -362,7 +386,7 @@
             </div></a>
             
             <!-- Plant Zone (Top Right) -->
-            <a href="#"><div id="plant-zone" class="zone">
+            <a href="weater-zone.html"><div id="plant-zone" class="zone">
                 <div class="zone-title"></div>
                 <div class="zone-image">
                     <div class="arrow arrow-down">
@@ -373,7 +397,7 @@
             </div></a>
             
             <!-- Ecosystem Zone (Bottom Left) -->
-            <a href="#"><div id="ecosystem-zone" class="zone">
+            <a href="ecosystem-zone.html"><div id="ecosystem-zone" class="zone">
                 <div class="zone-title"></div>
                 <div class="zone-image">
                     <div class="arrow arrow-up">
@@ -384,7 +408,7 @@
             </div></a>
             
             <!-- Energy Source Zone (Bottom Right) -->
-            <a href="#"><div id="energy-zone" class="zone">
+            <a href="socialInteraction-zone.html"><div id="energy-zone" class="zone">
                 <div class="zone-title"></div>
                 <div class="zone-image">
                     <div class="arrow arrow-left">
@@ -430,7 +454,7 @@
             </div>
             
             <!-- Center area -->
-            <!-- <div class="center-area">
+            <div class="center-area">
                 <div class="center-area-content">
                     <div class="center-square center-blue"></div>
                     <div class="center-square center-yellow"></div>
@@ -438,12 +462,8 @@
                     <div class="center-square center-red"></div>
                 </div>
             </div> 
-              .center-red { background-color: #ee2c2c; }
-        .center-yellow { background-color: #ffd700; }
-        .center-green { background-color: #2ecc40; }
-        .center-blue { background-color: #0074d9; }
-            
-            -->
+
+           
         </div>
     </div>
 

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flip Card Zones dengan Audio</title>
+  <style>
+    body {
+      background-image: url('image/bg-fix.jpg');
+      background-size: cover; 
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+    }
+
+    @media (max-width: 1024px) {
+      .card-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .card-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .flip-card {
+      background-color: transparent;
+      width: 190px;
+      height: 320px;
+      perspective: 1000px;
+      cursor: pointer;
+      padding: 11px;
+      transition: all .3s ease-in-out;
+    }
+
+    .flip-card:hover{
+      transform: scale(1.08);
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border: 6px solid #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .flip-card-front {
+      background-size: cover;
+      background-position: center;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .flip-card-back {
+      background-color: #ffffff;
+      color: #333;
+      transform: rotateY(180deg);
+      background-size: cover;
+      background-position: center;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .animal-zone {
+      background-image: url('image/materi/WeaterAndSeason.png');
+    }
+    
+    .plant-zone {
+      background-image: url('image/materi/WeaterAndSeason.png');
+    }
+
+    .animal-zone-back1 { background-image: url('image/materi/weater-zone/1.png'); }
+    .animal-zone-back2 { background-image: url('image/materi/weater-zone/2.png'); }
+    .animal-zone-back3 { background-image: url('image/materi/weater-zone/3.png'); }
+    .animal-zone-back4 { background-image: url('image/materi/weater-zone/4.png'); }
+    .animal-zone-back5 { background-image: url('image/materi/weater-zone/5.png'); }
+    .animal-zone-back6 { background-image: url('image/materi/weater-zone/6.png'); }
+    .animal-zone-back7 { background-image: url('image/materi/weater-zone/7.png'); }
+    .animal-zone-back8 { background-image: url('image/materi/weater-zone/8.png'); }
+    .animal-zone-back9 { background-image: url('image/materi/weater-zone/9.png'); }
+    .animal-zone-back10 { background-image: url('image/materi/weater-zone/10.png'); }
+
+    .audio-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .audio-controls label {
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+  
+    .home-link {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 15px;
+      background: #4a6ce2;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: all .3s ease-in-out;
+    }
+
+    .home-link:hover{
+      transform: scale(1.07);
+      background: #1b0a6b;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="papanMateri.html" class="home-link">Back</a>
+
+  <div class="card-container">
+    <!-- 10 Cards -->
+    <div class="flip-card" data-card-id="1">
+      <div class="flip-card-inner">
+        <div class="flip-card-front animal-zone"></div>
+        <div class="flip-card-back animal-zone-back1"></div>
+      </div>
+    </div>
+
+    <div class="flip-card" data-card-id="2">
+      <div class="flip-card-inner">
+        <div class="flip-card-front plant-zone"></div>
+        <div class="flip-card-back animal-zone-back2"></div>
+      </div>
+    </div>
+
+    <div class="flip-card" data-card-id="3">
+      <div class="flip-card-inner">
+        <div class="flip-card-front animal-zone"></div>
+        <div class="flip-card-back animal-zone-back3"></div>
+      </div>
+    </div>
+
+    <div class="flip-card" data-card-id="4">
+      <div class="flip-card-inner">
+        <div class="flip-card-front plant-zone"></div>
+        <div class="flip-card-back animal-zone-back4"></div>
+      </div>
+    </div>
+
+    <div class="flip-card" data-card-id="5">
+      <div class="flip-card-inner">
+        <div class="flip-card-front animal-zone"></div>
+        <div class="flip-card-back animal-zone-back5"></div>
+      </div>
+    </div>
+
+    <div class="flip-card" data-card-id="6">
+      <div class="flip-card-inner">
+        <div class="flip-card-front plant-zone"></div>
+        <div class="flip-card-back animal-zone-back6"></div>
+      </div>
+    </div>
+
+    <div class="flip-card" data-card-id="7">
+      <div class="flip-card-inner">
+        <div class="flip-card-front animal-zone"></div>
+        <div class="flip-card-back animal-zone-back7"></div>
+      </div>
+    </div>
+
+    <div class="flip-card" data-card-id="8">
+      <div class="flip-card-inner">
+        <div class="flip-card-front plant-zone"></div>
+        <div class="flip-card-back animal-zone-back8"></div>
+      </div>
+    </div>
+
+    <div class="flip-card" data-card-id="9">
+      <div class="flip-card-inner">
+        <div class="flip-card-front animal-zone"></div>
+        <div class="flip-card-back animal-zone-back9"></div>
+      </div>
+    </div>
+
+    <div class="flip-card" data-card-id="10">
+      <div class="flip-card-inner">
+        <div class="flip-card-front plant-zone"></div>
+        <div class="flip-card-back animal-zone-back10"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="audio-controls">
+    <label for="volume-control">Volume</label>
+    <input type="range" id="volume-control" min="0" max="1" step="0.1" value="0.7">
+    <button id="mute-button">Matikan Suara</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Membuat objek audio untuk setiap kartu emosi
+      const audioFiles = {
+        '1': new Audio('suara/emotion/.mp3'),
+        '2': new Audio('audio/emotion2.mp3'),
+        '3': new Audio('audio/emotion3.mp3'),
+        '4': new Audio('audio/emotion4.mp3'),
+        '5': new Audio('audio/emotion5.mp3'),
+        '6': new Audio('audio/emotion6.mp3'),
+        '7': new Audio('audio/emotion7.mp3'),
+        '8': new Audio('audio/emotion8.mp3'),
+        '9': new Audio('audio/emotion9.mp3'),
+        '10': new Audio('audio/emotion10.mp3')
+      };
+      
+      // Variabel untuk melacak status mute
+      let isMuted = false;
+      
+      // Preload semua file audio
+      for (const key in audioFiles) {
+        if (audioFiles.hasOwnProperty(key)) {
+          audioFiles[key].load();
+          // Set volume awal
+          audioFiles[key].volume = 0.7;
+        }
+      }
+      
+      // Fungsi untuk memutar audio ketika kartu diflip
+      function playCardAudio(cardId) {
+        // Hentikan semua audio yang sedang diputar
+        for (const key in audioFiles) {
+          if (audioFiles.hasOwnProperty(key)) {
+            audioFiles[key].pause();
+            audioFiles[key].currentTime = 0;
+          }
+        }
+        
+        // Putar audio kartu yang dipilih
+        if (audioFiles[cardId]) {
+          audioFiles[cardId].currentTime = 0; // Reset posisi audio
+          // Hanya putar jika tidak dalam keadaan mute
+          if (!isMuted) {
+            audioFiles[cardId].play();
+          }
+        }
+      }
+      
+      // Tambahkan event listener untuk semua kartu
+      const flipCards = document.querySelectorAll('.flip-card');
+      flipCards.forEach(card => {
+        card.addEventListener('click', function() {
+          // Toggle class flipped
+          this.classList.toggle('flipped');
+          
+          // Jika kartu dibalik ke depan, mainkan audio
+          if (this.classList.contains('flipped')) {
+            const cardId = this.getAttribute('data-card-id');
+            playCardAudio(cardId);
+          }
+        });
+      });
+      
+      // Kontrol volume
+      const volumeControl = document.getElementById('volume-control');
+      volumeControl.addEventListener('input', function() {
+        const volume = parseFloat(this.value);
+        for (const key in audioFiles) {
+          if (audioFiles.hasOwnProperty(key)) {
+            audioFiles[key].volume = volume;
+          }
+        }
+      });
+      
+      // Tombol mute
+      const muteButton = document.getElementById('mute-button');
+      muteButton.addEventListener('click', function() {
+        isMuted = !isMuted;
+        
+        if (isMuted) {
+          this.textContent = 'Nyalakan Suara';
+          // Simpan volume saat ini sebelum mute
+          volumeControl.setAttribute('data-previous-volume', volumeControl.value);
+          volumeControl.value = 0;
+          // Hentikan semua audio yang sedang diputar
+          for (const key in audioFiles) {
+            if (audioFiles.hasOwnProperty(key)) {
+              audioFiles[key].volume = 0;
+              audioFiles[key].pause();
+            }
+          }
+        } else {
+          this.textContent = 'Matikan Suara';
+          // Kembalikan volume ke nilai sebelumnya
+          const previousVolume = volumeControl.getAttribute('data-previous-volume') || 0.7;
+          volumeControl.value = previousVolume;
+          // Setel volume untuk semua audio
+          for (const key in audioFiles) {
+            if (audioFiles.hasOwnProperty(key)) {
+              audioFiles[key].volume = previousVolume;
+            }
+          }
+        }
+      });
+      
+      // Deteksi apakah perangkat mendukung autoplay
+      document.addEventListener('click', function audioTest() {
+        // Coba putar audio kosong untuk membuka kemampuan audio di perangkat mobile
+        const silentAudio = new Audio('data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV');
+        silentAudio.play().catch(function(error) {
+          console.log('Autoplay tidak diizinkan:', error);
+        });
+        
+        // Hapus event listener ini setelah dijalankan sekali
+        document.removeEventListener('click', audioTest);
+      });
+    });
+  </script>
+</body>
+</html>
